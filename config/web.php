@@ -23,6 +23,9 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
+        'activities' => [
+            'class' => 'app\components\activities\ActivityComponent'
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
