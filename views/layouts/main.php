@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Событие', 'url' => ['/activity/index']],
+            ['label' => 'Календарь', 'url' => ['/activity/index']],
             ['label' => 'Задание', 'url' => ['/task/task']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
