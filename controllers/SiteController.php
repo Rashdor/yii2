@@ -7,8 +7,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\{
+    formsModel\RegistrationForm, LoginForm, ContactForm, User
+};
 
 class SiteController extends Controller
 {
@@ -125,4 +126,36 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionRegistration()
+    {
+        $model = new RegistrationForm();
+        if ($model->load(Yii::$app->request->post()) && $model->registrate()) {
+            Yii::$app->session->setFlash('registrationFormSubmitted');
+            return $this->redirect(['site/login'], 301);
+        }
+        return $this->render('registration', [
+            'model' => $model,
+        ]);
+    }
+
+    /*
+
+    public function actionTest()
+    {
+        $result = false;
+        $model = User::find()->where(['username' => 'admin'])->one();
+        if (empty($model)) {
+            $user = new User();
+            $user->username = 'admin';
+            $user->email = 'your@email.com';
+            $user->setPassword('admin');
+            $user->generateAuthKey();
+            $user->save();
+            $result = $user->hasErrors();
+        }
+        echo $result;
+    }
+
+    */
 }

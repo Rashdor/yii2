@@ -10,7 +10,8 @@ namespace app\controllers;
 
 
 use yii\web\Controller;
-use app\models\{ActivityCalendar, ActivityForm};
+use app\models\{ActivityCalendar};
+use app\models\formsModel\ActivityForm;
 
 class ActivityController extends Controller
 {

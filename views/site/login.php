@@ -7,13 +7,21 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?php if (Yii::$app->session->hasFlash('registrationFormSubmitted')): ?>
 
-    <p>Please fill out the following fields to login:</p>
+        <h1>Вы успешно зарегистрировались</h1>
+        <?php
+        Yii::$app->session->removeFlash('registrationFormSubmitted')
+        ?>
+    <?php else: ?>
+        <h1>Логин</h1>
+    <?php endif; ?>
+
+    <p>Войти</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -41,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php ActiveForm::end(); ?>
 
     <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+        <?= Html::a('Зарегистрироваться', ['/site/registration']) ?>
     </div>
 </div>
